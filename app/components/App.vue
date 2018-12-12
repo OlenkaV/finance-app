@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import router from '../router/index'
 
 export default {
     data() {
@@ -61,10 +60,10 @@ export default {
             }
         },
         onAddButtonTap() {
-            router.push({ name: this.$router.currentRoute.meta.addRoutName });
+            this.$router.push({ name: this.$router.currentRoute.meta.addRoutName });
         },
         onButtonTap(page) {
-            router.push({ name: page });
+            this.$router.push({ name: page });
             this.onMenuTap();
             
         },
@@ -76,7 +75,7 @@ export default {
     },
     mounted: function() {
 
-        router.push({ name: 'Home' });
+        this.$router.push({ name: 'Home' });
     }
 }
 </script>
