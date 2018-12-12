@@ -20,37 +20,44 @@ export default new VueRouter({
         {
             path: '/home',
             name: 'Home',
-            component: Home
+            component: Home,
+            meta: {abBackgroundColor: '#3c8dbc', title: 'Welcome to Home Accounts'}
         },
         {
             path: "/profit",
             name: "Profit",
-            component: Profit
+            component: Profit,
+            meta: {abBackgroundColor: '#53ba82', title: 'Add new Profit'}
         },
         {
             path: "/profit/list",
             name: "ProfitList",
-            component: ProfitList
+            component: ProfitList,
+            meta: {abBackgroundColor: '#53ba82', addRoutName: 'Profit', title: 'Profit List'}
         },
         {
             path: "/expense",
             name: "Expense",
-            component: Expense
+            component: Expense,
+            meta: {abBackgroundColor: '#f30', title: 'Add new Expense'}
         },
         {
             path: "/expense/list",
             name: "ExpenseList",
-            component: ExpenseList
+            component: ExpenseList,
+            meta: {abBackgroundColor: '#f30', addRoutName: 'Expense', title: 'Expense List'}
         },
         {
             path: "/planned-purchases",
             name: "PlannedPurchases",
-            component: PlannedPurchases
+            component: PlannedPurchases,
+            meta: {abBackgroundColor: '#53ba82', title: 'Add new Planned Purchase'}
         },
         {
             path: "/planned-purchases/list",
             name: "PlannedPurchasesList",
-            component: PlannedPurchasesList
+            component: PlannedPurchasesList,
+            meta: {abBackgroundColor: '#53ba82', addRoutName: 'PlannedPurchases', title: 'Planned Purchases'}
         },
         {
             path: "/",

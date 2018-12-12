@@ -1,9 +1,10 @@
 <template>
     <Page>
-        <ActionBar>
-            <GridLayout width="100%" columns="auto, *">
+        <ActionBar :backgroundColor="abBackgroundColor">
+            <GridLayout width="100%" columns="auto, 6*, *">
                 <Label @tap="onMenuTap()" class="fa" fontSize="24" col="0">&#xf0c9;</Label>
-                <Label class="title" text="Welcome to Home Accounts"  col="1"/>
+                <Label class="title" :text="title"  col="1" fontSize="16"/>
+                <Label v-if="addRoutName" @tap="onAddButtonTap()" fontSize="24" class="fa" col="2">&#xf067;</Label>
             </GridLayout>
         </ActionBar>
 
@@ -12,26 +13,13 @@
                 <ScrollView orientation="vertical">
                     <StackLayout>
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('Home')">&#xf015; Home</label>
-
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('ProfitList')">&#xf063; Profit</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('ProfitList')">&#xf0ca; List</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('Profit')">&#xf067; Add</Label>
-
-                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('ExpenseList')">&#xf062; Expense</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('ExpenseList')">&#xf0ca; List</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('Expense')">&#xf067; Add</Label>
-
+                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('ExpenseList')">&#xf062; Expenses</Label>
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf07a; Planned Purchases</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf0ca; List</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('PlannedPurchases')">&#xf067; Add</Label>
-
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf00c; Budget Planning</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf0ca; List</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('PlannedPurchases')">&#xf067; Add</Label>
-
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf19c; Accounts</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf0ca; List</Label>
-                        <Label class="sideLabel fa" @tap="onButtonTap('PlannedPurchases')">&#xf067; Add</Label>
+                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf0b1; Profit Categories</Label>
+                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf291; Expenses Categories</Label>
                     </StackLayout>
                 </ScrollView>
             </StackLayout>         
@@ -51,11 +39,15 @@ import router from '../router/index'
 export default {
     data() {
         return {
-            drawerOpened: false
+            drawerOpened: false,
+            title: '',
+            addRoutName: '',
+            abBackgroundColor: '#53ba82'
         }
     },
-    components: {
-        
+    watch: {
+      // call again the method if the route changes
+      '$route': 'fetchData'
     },
     methods: {
         onMenuTap() {
@@ -68,9 +60,18 @@ export default {
                 this.drawerOpened = false;
             }
         },
+        onAddButtonTap() {
+            router.push({ name: this.$router.currentRoute.meta.addRoutName });
+        },
         onButtonTap(page) {
             router.push({ name: page });
             this.onMenuTap();
+            
+        },
+        fetchData() {
+            this.title = this.$router.currentRoute.meta.title;
+            this.abBackgroundColor = this.$router.currentRoute.meta.abBackgroundColor;
+            this.addRoutName = this.$router.currentRoute.meta.addRoutName;
         }
     },
     mounted: function() {
@@ -108,6 +109,5 @@ export default {
     }
     .sideLightGrayLabel {
         margin: 0 0;
-        background-color: #eee;
     }
 </style>

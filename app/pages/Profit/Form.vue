@@ -1,52 +1,53 @@
 <template>
     <StackLayout ref="page">
-        <ActionBar class="action-bar" title="Add new Profit"></ActionBar>
         <StackLayout class="form">
             <StackLayout class="input-field">
                 <TextField
+                    :class="(this.onSubmit && this.profit.category == '')?'field invalid' : 'field'"
                     @tap="chooseCategory()"
                     editable="false"
                     hint="Category"
                     keyboardType="account"
                     returnKeyType="next"
                     v-model="profit.category"
-                    autocorrect="false"></TextField>
+                    autocorrect="false" required></TextField>
             </StackLayout>
             
             <StackLayout class="input-field">
                 <TextField
+                    :class="(this.onSubmit && this.profit.account == '')?'field invalid' : 'field'"
                     @tap="chooseAccount()"
                     editable="false"
                     hint="Account"
                     keyboardType="account"
                     returnKeyType="next"
                     v-model="profit.account"
-                    autocorrect="false"></TextField>
+                    autocorrect="false" required></TextField>
             </StackLayout>
             
             <StackLayout class="input-field">
                 <TextField
+                    :class="(this.onSubmit && this.profit.price == '')?'field invalid' : 'field'"
                     hint="Sum"
-                    keyboardType="sum"
+                    keyboardType="number"
                     returnKeyType="next"
-                    v-model="profit.sum"
-                    autocorrect="false"></TextField>
+                    v-model="profit.price"
+                    autocorrect="false" required></TextField>
             </StackLayout>
             
             <StackLayout class="input-field">
                 <TextField
+                    :class="(this.onSubmit && this.profit.comment == '')?'field invalid' : 'field'"
                     hint="Comment"
                     keyboardType="comment"
                     returnKeyType="next"
                     v-model="profit.comment"
-                    autocorrect="false"></TextField>
+                    autocorrect="false" required></TextField>
             </StackLayout>
             
-            <StackLayout class="input-field">
-                <Button
-                    class="submit-button"
-                    @tap="submit()">Add</Button>
-            </StackLayout>
+            <Button
+                class="btn btn-primary"
+                @tap="submit()">Add</Button>
         </StackLayout>
     </StackLayout>
 </template>
@@ -57,10 +58,11 @@ export default {
     name: 'Profit',
     data() {
         return {
+            onSubmit: false,
             profit: {
                 category: '',
                 account: '',
-                sum: '',
+                price: '',
                 comment: ''
             }
         }
@@ -79,7 +81,27 @@ export default {
     },
     methods: {
         submit() {
+            var valid = true;
+            this.onSubmit = true;
             
+            valid = (this.profit.category == '') ? false : true;
+            valid = (this.profit.account == '') ? false : true;
+            valid = (this.profit.price == '') ? false : true;
+            valid = (this.profit.comment == '') ? false : true;
+            
+            var data = {
+                category: this.profit.category,
+                account: this.profit.account,
+                price: this.profit.price,
+                comment: this.profit.comment,
+                date: '30.12'
+            }
+            
+            if(valid) {
+                this.$store.dispatch('profit/add', data);
+
+                this.$router.push({ name: 'ProfitList' });
+            }
         },
         chooseCategory() {
             var _this = this;
@@ -120,5 +142,18 @@ export default {
 </script>
 
 <style>
-
+.field {
+    border-left-color: #ffffff; 
+    border-left-width: 3;
+    
+    border-bottom-width: 1;
+    border-bottom-color: #000000; 
+}
+.invalid {
+    border-left-color: #ff5500; 
+    border-left-width: 3;
+    
+    border-bottom-width: 1;
+    border-bottom-color: #ff5500; 
+}
 </style>

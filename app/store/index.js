@@ -1,6 +1,7 @@
 import Vue from 'nativescript-vue';
 import Vuex from 'vuex';
 
+import App from './app'
 import Account from './account'
 
 import Profit from './profit'
@@ -17,6 +18,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     namespaced: true,
     modules: {
+        app: App,
         account: Account,
         
         profit: Profit,

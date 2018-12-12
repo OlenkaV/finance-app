@@ -1,7 +1,5 @@
 <template>
     <StackLayout ref="page">
-        <ActionBar class="action-bar" title="Profit List"></ActionBar>
-        
         <ScrollView>
             <RadListView for="item in listOfItems">
                 <v-template>

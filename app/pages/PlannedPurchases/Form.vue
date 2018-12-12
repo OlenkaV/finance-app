@@ -1,6 +1,5 @@
 <template>
     <StackLayout ref="page">
-        <ActionBar class="action-bar" title="Planned Purchases Form"></ActionBar>
         <StackLayout class="form">
             <StackLayout class="input-field">
                 <TextField

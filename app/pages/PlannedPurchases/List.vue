@@ -1,6 +1,5 @@
 <template>
     <StackLayout ref="page">
-        <ActionBar class="action-bar" title="Planned Purchases List"></ActionBar>
         <ScrollView>
             <RadListView for="item in listOfItems">
                 <v-template>

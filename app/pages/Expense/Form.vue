@@ -1,6 +1,5 @@
 <template>
     <StackLayout ref="page">
-        <ActionBar class="action-bar" title="Add new Expense"></ActionBar>
         <StackLayout class="form">
             <StackLayout class="input-field">
                 <TextField
