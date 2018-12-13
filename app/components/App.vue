@@ -22,7 +22,7 @@
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf291; Expenses Categories</Label>
                     </StackLayout>
                 </ScrollView>
-            </StackLayout>         
+            </StackLayout>
 
             <GridLayout ~mainContent columns="*" rows="*">
                 <StackLayout class="main-container" ~mainContent>

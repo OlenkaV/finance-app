@@ -21,7 +21,7 @@ export default new VueRouter({
             path: '/home',
             name: 'Home',
             component: Home,
-            meta: {abBackgroundColor: '#3c8dbc', title: 'Welcome to Home Accounts'}
+            meta: {abBackgroundColor: '#3c8dbc', title: 'Home Accounts'}
         },
         {
             path: "/profit",
