@@ -11,6 +11,8 @@ import ExpenseList from './pages/Expense/List.vue';
 import PlannedPurchases from './pages/PlannedPurchases/Form.vue';
 import PlannedPurchasesList from './pages/PlannedPurchases/List.vue';
 
+import Settings from './pages/Settings.vue';
+
 
 Vue.use(VueRouter);
 
@@ -58,6 +60,12 @@ export default new VueRouter({
             name: "PlannedPurchasesList",
             component: PlannedPurchasesList,
             meta: {abBackgroundColor: '#53ba82', addRoutName: 'PlannedPurchases', title: 'Planned Purchases'}
+        },
+        {
+            path: "/settings",
+            name: "Settings",
+            component: Settings,
+            meta: {abBackgroundColor: '#53ba82', title: 'Settings'}
         },
         {
             path: "/",

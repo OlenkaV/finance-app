@@ -12,6 +12,7 @@ const messages = {
   uk: uk,
 }
 
+
 const i18n = new VueI18n({
   locale: 'uk',
   messages,

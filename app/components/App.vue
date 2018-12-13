@@ -20,6 +20,7 @@
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf19c; Accounts</Label>
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf0b1; Profit Categories</Label>
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf291; Expenses Categories</Label>
+                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('Settings')">&#xf085; {{ $t('Settings') }}</Label>
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
@@ -44,9 +45,14 @@ export default {
             abBackgroundColor: '#53ba82'
         }
     },
+    computed: {
+        locale() {
+            return this.$store.state.app.locale;
+        }
+    },
     watch: {
-      // call again the method if the route changes
-      '$route': 'fetchData'
+        '$route': 'fetchData',
+        'locale': 'localeChanged'
     },
     methods: {
         onMenuTap() {
@@ -65,12 +71,16 @@ export default {
         onButtonTap(page) {
             this.$router.push({ name: page });
             this.onMenuTap();
-            
         },
         fetchData() {
+            this.drawerOpened = false;
+            
             this.title = this.$router.currentRoute.meta.title;
             this.abBackgroundColor = this.$router.currentRoute.meta.abBackgroundColor;
             this.addRoutName = this.$router.currentRoute.meta.addRoutName;
+        },
+        localeChanged() {
+            this.$i18n.locale = this.locale
         }
     },
     mounted: function() {
