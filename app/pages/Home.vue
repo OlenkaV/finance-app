@@ -1,7 +1,7 @@
 <template>
     <GridLayout ref="page">
         <TabView :selectedIndex="selectedIndex">
-            <TabViewItem title="Profit">
+            <TabViewItem :title="$t('Profit')">
                 <RadPieChart height="300" allowAnimation="true" row="0">
                     <PieSeries v-tkPieSeries
                         selectionMode="DataPoint"
@@ -16,7 +16,7 @@
                         enableSelection="true"></RadLegendView>
                 </RadPieChart>
             </TabViewItem>
-            <TabViewItem title="Expenses">
+            <TabViewItem :title="$t('Expenses')">
                 <RadPieChart height="300" allowAnimation="true" row="0">
                     <PieSeries v-tkPieSeries
                         selectionMode="DataPoint"

@@ -3,7 +3,7 @@
         <ActionBar :backgroundColor="abBackgroundColor">
             <GridLayout width="100%" columns="auto, 6*, *">
                 <Label @tap="onMenuTap()" class="fa" fontSize="24" col="0">&#xf0c9;</Label>
-                <Label class="title" :text="title"  col="1" fontSize="16"/>
+                <Label class="title" :text="$t(title)"  col="1" fontSize="16"/>
                 <Label v-if="addRoutName" @tap="onAddButtonTap()" fontSize="24" class="fa" col="2">&#xf067;</Label>
             </GridLayout>
         </ActionBar>
@@ -13,8 +13,8 @@
                 <ScrollView orientation="vertical">
                     <StackLayout>
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('Home')">&#xf015; Home</label>
-                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('ProfitList')">&#xf063; Profit</Label>
-                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('ExpenseList')">&#xf062; Expenses</Label>
+                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('ProfitList')">&#xf063; {{ $t('Profit') }}</Label>
+                        <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('ExpenseList')">&#xf062; {{ $t('Expenses') }}</Label>
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf07a; Planned Purchases</Label>
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf00c; Budget Planning</Label>
                         <Label class="sideLabel sideLightGrayLabel fa" @tap="onButtonTap('PlannedPurchasesList')">&#xf19c; Accounts</Label>

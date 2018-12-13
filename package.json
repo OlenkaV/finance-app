@@ -17,6 +17,8 @@
     "nativescript-checkbox": "^3.0.3",
     "nativescript-drop-down": "^4.0.1",
     "nativescript-fonticon": "^2.0.0",
+    "nativescript-i18n": "^0.2.4",
+    "nativescript-localize": "^4.1.0",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-ui-chart": "^3.11.0",
     "nativescript-ui-listview": "^5.0.1",
@@ -24,6 +26,7 @@
     "nativescript-vue": "^2.0.0",
     "nativescript-vue-devtools": "^1.1.0",
     "tns-core-modules": "^5.0.2",
+    "vue-i18n": "7.3.3",
     "vue-router": "^3.0.2",
     "vuex": "^3.0.1"
   },
