@@ -4,7 +4,7 @@ const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const TerserPlugin = require('terser-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const NsVueTemplateCompiler = require("nativescript-vue-template-compiler");
@@ -56,7 +56,7 @@ module.exports = env => {
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
 
     const entryModule = nsWebpack.getEntryModule(appFullPath);
-    const entryPath = `.${sep}${entryModule}.js`;
+    const entryPath = `.${sep}${entryModule}`;
     console.log(`Bundling application for entryPath ${entryPath}...`);
 
     const config = {
@@ -83,7 +83,7 @@ module.exports = env => {
             globalObject: "global",
         },
         resolve: {
-            extensions: [".vue", ".js", ".scss", ".css"],
+            extensions: [".vue", ".ts", ".js", ".scss", ".css"],
             // Resolve {N} system modules from tns-core-modules
             modules: [
                 resolve(__dirname, "node_modules/tns-core-modules"),
@@ -96,8 +96,8 @@ module.exports = env => {
                 '@': appFullPath,
                 'vue': 'nativescript-vue'
             },
-            // don't resolve symlinks to symlinked modules
-            symlinks: false,
+            // resolve symlinks to symlinked modules
+            symlinks: true,
         },
         resolveLoader: {
             // don't resolve symlinks to symlinked loaders
@@ -130,10 +130,10 @@ module.exports = env => {
             },
             minimize: Boolean(production),
             minimizer: [
-                new TerserPlugin({
+                new UglifyJsPlugin({
                     parallel: true,
                     cache: true,
-                    terserOptions: {
+                    uglifyOptions: {
                         output: {
                             comments: false,
                         },
@@ -143,8 +143,6 @@ module.exports = env => {
                             'collapse_vars': platform !== "android",
                             sequences: platform !== "android",
                         },
-                        safari10: platform === "ios",
-                        keep_fnames: true,
                     },
                 }),
             ],
@@ -190,6 +188,14 @@ module.exports = env => {
                     loader: 'babel-loader',
                 },
                 {
+                    test: /\.ts$/,
+                    loader: 'ts-loader',
+                    options: {
+                        appendTsSuffixTo: [/\.vue$/],
+                        allowTsInNodeModules: true,
+                    },
+                },
+                {
                     test: /\.vue$/,
                     loader: "vue-loader",
                     options: {
@@ -217,9 +223,9 @@ module.exports = env => {
             }]),
             // Copy assets to out dir. Add your own globs as needed.
             new CopyWebpackPlugin([
-                { from: "fonts/**" },
-                { from: "**/*.+(jpg|png)" },
-                { from: "assets/**/*" },
+                { from: { glob: "fonts/**" } },
+                { from: { glob: "**/*.+(jpg|png)" } },
+                { from: { glob: "assets/**/*" } },
             ], { ignore: [`${relative(appPath, appResourcesFullPath)}/**`] }),
             // Generate a bundle starter script and activate it in package.json
             new nsWebpack.GenerateBundleStarterPlugin([

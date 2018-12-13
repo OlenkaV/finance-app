@@ -38,23 +38,7 @@ export default {
         this.$store.dispatch('expense/fetchAll');
     },
     methods: {
-        submit() {
-            
-        },
-        chooseCategory() {
-            var _this = this;
-            action("Choose Category", "Cancel", this.categories)
-            .then(result => {
-                _this.profit.category = result;
-            })
-        },
-        chooseAccount() {
-            var _this = this;
-            action("Choose Account", "Cancel", this.accounts)
-            .then(result => {
-                _this.profit.account = result;
-            })
-        }
+        
     }
 }
 </script>

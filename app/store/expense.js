@@ -4,7 +4,9 @@ const state = {
 
 const mutations = {
     FETCH_ALL(state, list) {
-        state.list = list
+        if(state.list.length == 0) {
+            state.list = list
+        }
     },
     ADD(state, item) {
         state.list.unshift(item)
@@ -26,7 +28,7 @@ const actions = {
         ]);
     },
     add({commit}, item) {
-
+        commit('ADD', item);
     }
 }
 

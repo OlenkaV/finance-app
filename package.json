@@ -10,7 +10,7 @@
       "version": "5.0.0"
     },
     "tns-android": {
-      "version": "5.0.0"
+      "version": "5.2.0-2018-12-10-144538-02"
     }
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "nativescript-fonticon": "^2.0.0",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-ui-chart": "^3.11.0",
+    "nativescript-ui-listview": "^5.0.1",
     "nativescript-ui-sidedrawer": "^4.3.0",
     "nativescript-vue": "^2.0.0",
     "nativescript-vue-devtools": "^1.1.0",
@@ -37,6 +38,7 @@
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
     "lazy": "1.0.11",
+    "nativescript-dev-typescript": "^0.7.8",
     "nativescript-dev-webpack": "next",
     "nativescript-vue-template-compiler": "^2.0.0",
     "nativescript-worker-loader": "~0.9.0",

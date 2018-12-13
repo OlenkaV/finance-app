@@ -5,7 +5,6 @@ import App from './components/App'
 Vue.config.silent = (TNS_ENV === 'production')
 
 Vue.registerElement('RadSideDrawer', () => require('nativescript-ui-sidedrawer').RadSideDrawer)
-Vue.registerElement('CheckBox', () => require('nativescript-checkbox').CheckBox)
 
 import router from '@/router'
 import store from '@/store'

@@ -1,6 +1,5 @@
 <template>
     <GridLayout ref="page">
-        
         <TabView :selectedIndex="selectedIndex">
             <TabViewItem title="Profit">
                 <RadPieChart height="300" allowAnimation="true" row="0">

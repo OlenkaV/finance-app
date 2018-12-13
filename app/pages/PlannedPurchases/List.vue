@@ -20,7 +20,6 @@
 <script>
 import Vue from 'nativescript-vue';
 import RadListView from 'nativescript-ui-listview/vue';
-import { CheckBox } from 'nativescript-checkbox';
 
 
 Vue.use(RadListView);
